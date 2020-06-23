@@ -19,17 +19,17 @@
 
 var twoCitySchedCost = function(costs) {
   costs.sort((a,b) => (Math.abs(b[0] - b[1]) - Math.abs(a[0] - a[1])));
-  let t = 0, A = 0, B = 0, l = costs.length / 2;
-  for (let i of costs) {
-      if (i[0] < i[1]) {
-          if (A < l) t += i[0], A++;
-          else t += i[1], B++;
+  let total = 0, A = 0, B = 0, l = costs.length / 2;
+  for (let cost of costs) {
+      if (cost[0] < cost[1]) {
+          if (A < l) total += cost[0], A++;
+          else total += cost[1], B++;
       }
-      else if (i[0] > i[1]) {
-          if (B < l) t += i[1], B++;
-          else t += i[0], A++;
+      else if (cost[0] > cost[1]) {
+          if (B < l) total += cost[1], B++;
+          else total += cost[0], A++;
       }
-      else t += i[0];
+      else total += cost[0];
   };    
-  return t;
+  return total;
 };
